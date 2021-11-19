@@ -50,8 +50,12 @@ class GameFragment : Fragment() {
         Log.i("GameFragment", "Called ViewModelProvider.get")
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
-        binding.correctButton.setOnClickListener { onCorrect() }
-        binding.skipButton.setOnClickListener { onSkip() }
+        binding.apply{
+            correctButton.setOnClickListener { onCorrect() }
+            skipButton.setOnClickListener { onSkip() }
+            endGameButton.setOnClickListener{ onEndGame() }
+        }
+
         updateScoreText()
         updateWordText()
         return binding.root
@@ -70,6 +74,10 @@ class GameFragment : Fragment() {
         viewModel.onCorrect()
         updateScoreText()
         updateWordText()
+    }
+
+    private fun onEndGame() {
+
     }
 
 
