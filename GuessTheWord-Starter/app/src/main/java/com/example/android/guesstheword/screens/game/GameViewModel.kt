@@ -78,6 +78,10 @@ class GameViewModel : ViewModel() {
         _gameFinishedEvent.value = true
     }
 
+    fun onGameFinishComplete() {
+        _gameFinishedEvent.value = false
+    }
+
     /** Methods for buttons presses **/
 
     fun onSkip() {
