@@ -4,12 +4,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
-    init{
-        Log.i("GameViewModel", "Init block executed!")
-        resetList()
-        nextWord()
-    }
-
     // The current word
     var word = ""
 
@@ -18,6 +12,12 @@ class GameViewModel : ViewModel() {
 
     // The list of words - the front of the list is the next word to guess
     private lateinit var wordList: MutableList<String>
+
+    init{
+        Log.i("GameViewModel", "Init block executed!")
+        resetList()
+        nextWord()
+    }
 
     /**
      * Resets the list of words and randomizes the order
