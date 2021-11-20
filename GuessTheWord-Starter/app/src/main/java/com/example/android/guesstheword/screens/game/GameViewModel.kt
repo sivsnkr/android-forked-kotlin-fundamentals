@@ -21,7 +21,7 @@ class GameViewModel : ViewModel() {
         get() = _gameFinishedEvent
 
     // The list of words - the front of the list is the next word to guess
-    private lateinit var wordList: MutableList<String>
+    private lateinit var wordList : MutableList<String>
 
     init{
         Log.i("GameViewModel", "Init block executed!")
@@ -66,7 +66,7 @@ class GameViewModel : ViewModel() {
      * Moves to the next word in the list
      */
     private fun nextWord() {
-        if (!wordList.isEmpty()) {
+        if (wordList.isNotEmpty()) {
             //Select and remove a word from the list
             _word.value = wordList.removeAt(0)
         }else {
