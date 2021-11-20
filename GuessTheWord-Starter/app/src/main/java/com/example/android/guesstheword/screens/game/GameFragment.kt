@@ -54,9 +54,7 @@ class GameFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
         binding.apply{
-            correctButton.setOnClickListener { onCorrect() }
-            skipButton.setOnClickListener { onSkip() }
-            endGameButton.setOnClickListener{ onEndGame() }
+            gameViewModel = viewModel
         }
 
         viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
@@ -68,25 +66,11 @@ class GameFragment : Fragment() {
         })
 
         viewModel.gameFinishedEvent.observe(viewLifecycleOwner, Observer { didGameFinish ->
-            if(didGameFinish) onEndGame()
+            if(didGameFinish) gameFinished()
         })
 
         return binding.root
 
-    }
-
-    /** Methods for buttons presses **/
-
-    private fun onSkip() {
-        viewModel.onSkip()
-    }
-
-    private fun onCorrect() {
-        viewModel.onCorrect()
-    }
-
-    private fun onEndGame() {
-        gameFinished()
     }
 
     /**
