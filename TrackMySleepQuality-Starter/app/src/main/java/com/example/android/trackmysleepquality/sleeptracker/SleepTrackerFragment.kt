@@ -59,13 +59,14 @@ class SleepTrackerFragment : Fragment() {
         binding.sleepTrackerViewModel = sleepTrackerViewModel
 
         // navigate to sleep quality observer
-        sleepTrackerViewModel.navigateToSleepQuality.observe(viewLifecycleOwner, Observer { night ->
-            night?.let {
+        sleepTrackerViewModel.navigateToSleepQuality.observe(viewLifecycleOwner, Observer {
+            if(it != null){
                 this.findNavController().navigate(
                     SleepTrackerFragmentDirections
-                        .actionSleepTrackerFragmentToSleepQualityFragment(night.nightId))
+                        .actionSleepTrackerFragmentToSleepQualityFragment(it.nightId))
                 sleepTrackerViewModel.doneNavigating()
-            } })
+            }
+        })
 
         sleepTrackerViewModel.showSnackBarEvent.observe(viewLifecycleOwner, Observer {
             if (it == true) { // Observed state is true.
