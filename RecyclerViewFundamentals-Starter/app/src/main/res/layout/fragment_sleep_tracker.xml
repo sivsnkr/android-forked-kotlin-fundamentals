@@ -39,32 +39,19 @@
              better and more efficient way to do this, and you will learn about
              RecyclerView in a later lesson. -->
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/clear_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stop_button">
-
-            <!-- In the TextView, we can access the nightsString LiveData,
-                 which keeps it displayed and updated in the TextView
-                 whenever it changes. -->
-
-            <TextView
-                android:id="@+id/textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin"
-                android:layout_marginTop="@dimen/margin"
-                android:layout_marginEnd="@dimen/margin"
-                android:text="@{sleepTrackerViewModel.nightsString}" />
-        </ScrollView>
-
         <!-- With data binding and LiveData, we can track the buttons' visibility states
              from the ViewModel. The click handler is in the ViewModel as well, and
              you can set it for the Views using this lambda pattern. -->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sleep_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/clear_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/start_button" />
 
         <Button
             android:id="@+id/start_button"
@@ -75,6 +62,7 @@
             android:enabled="@{sleepTrackerViewModel.startButtonVisible}"
             android:onClick="@{() -> sleepTrackerViewModel.onStart()}"
             android:text="@string/start"
+            android:textColor="#1B5E20"
             app:layout_constraintBaseline_toBaselineOf="@id/stop_button"
             app:layout_constraintEnd_toStartOf="@+id/stop_button"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -90,6 +78,7 @@
             android:enabled="@{sleepTrackerViewModel.stopButtonVisible}"
             android:onClick="@{() -> sleepTrackerViewModel.onStop()}"
             android:text="@string/stop"
+            android:textColor="#1B5E20"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/start_button"
             app:layout_constraintTop_toTopOf="parent" />
@@ -105,6 +94,7 @@
             android:enabled="@{sleepTrackerViewModel.clearButtonVisible}"
             android:onClick="@{() -> sleepTrackerViewModel.onClear()}"
             android:text="@string/clear"
+            android:textColor="#1B5E20"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
