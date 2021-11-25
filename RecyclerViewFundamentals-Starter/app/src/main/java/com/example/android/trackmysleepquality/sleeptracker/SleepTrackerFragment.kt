@@ -113,7 +113,8 @@ class SleepTrackerFragment : Fragment() {
         // add observer for observing allnights live data
         sleepTrackerViewModel.nights.observe(viewLifecycleOwner, {
             it?.let{
-                adapter.data = it
+//                adapter.data = it
+                adapter.submitList(it)
             }
         })
         return binding.root
