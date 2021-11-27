@@ -142,6 +142,19 @@ class SleepTrackerViewModel(
         return night
     }
 
+    /** add Livedata to trigger navigation to sleepDetails page */
+    private val _navigateToSleepDetail = MutableLiveData<Long>()
+    val navigateToSleepDetail
+        get() = _navigateToSleepDetail
+
+    fun onSleepNightClicked(id: Long) {
+        _navigateToSleepDetail.value = id
+    }
+
+    fun onSleepDetailNavigated() {
+        _navigateToSleepDetail.value = null
+    }
+
     private suspend fun insert(night: SleepNight) {
         database.insert(night)
     }

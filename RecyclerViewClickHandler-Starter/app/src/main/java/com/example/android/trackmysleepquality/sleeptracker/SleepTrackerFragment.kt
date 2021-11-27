@@ -50,7 +50,7 @@ class SleepTrackerFragment : Fragment() {
      * to use the [LiveData] on our ViewModel.
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
 
         // Get a reference to the binding object and inflate the fragment views.
         val binding: FragmentSleepTrackerBinding = DataBindingUtil.inflate(
@@ -73,6 +73,7 @@ class SleepTrackerFragment : Fragment() {
 
         val adapter = SleepNightAdapter(SleepNightListener { nightId ->
             Toast.makeText(context, "$nightId", Toast.LENGTH_LONG).show()
+            sleepTrackerViewModel.onSleepNightClicked(nightId)
         })
         binding.sleepList.adapter = adapter
 
@@ -84,7 +85,7 @@ class SleepTrackerFragment : Fragment() {
 
         // Specify the current activity as the lifecycle owner of the binding.
         // This is necessary so that the binding can observe LiveData updates.
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
         // Add an Observer on the state variable for showing a Snackbar message
         // when the CLEAR button is pressed.
@@ -117,6 +118,16 @@ class SleepTrackerFragment : Fragment() {
                 // Reset state to make sure we only navigate once, even if the device
                 // has a configuration change.
                 sleepTrackerViewModel.doneNavigating()
+            }
+        })
+
+        /** navigate to sleepNightDetails page */
+        sleepTrackerViewModel.navigateToSleepDetail.observe(viewLifecycleOwner, Observer { night ->
+            night?.let {
+                this.findNavController().navigate(
+                    SleepTrackerFragmentDirections
+                        .actionSleepTrackerFragmentToSleepDetailFragment(night))
+                sleepTrackerViewModel.onSleepDetailNavigated()
             }
         })
 
