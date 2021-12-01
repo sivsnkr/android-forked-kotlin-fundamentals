@@ -28,6 +28,7 @@ import com.example.android.marsrealestate.network.MarsProperty
 import com.example.android.marsrealestate.overview.MarsApiStatus
 import com.example.android.marsrealestate.overview.PhotoGridAdapter
 
+// binding adapter to load image from the URL
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
     imgUrl?.let{
@@ -45,6 +46,7 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
     }
 }
 
+// binding adapter for updating the UI if the MarsProperties data change
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView,
                      data: List<MarsProperty>?) {
@@ -52,6 +54,7 @@ fun bindRecyclerView(recyclerView: RecyclerView,
     adapter.submitList(data)
 }
 
+// binding adapter for showing proper UI based on URL response status
 @BindingAdapter("marsApiStatus")
 fun bindStatus(statusImageView: ImageView, status: MarsApiStatus?) {
     when (status) {
