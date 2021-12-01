@@ -29,6 +29,6 @@ data class MarsProperty(
     val type: String,
     val price: Double
 ) : Parcelable{
-    val rental : Boolean
+    val isRental : Boolean
         get() = type == "rent"
 }
