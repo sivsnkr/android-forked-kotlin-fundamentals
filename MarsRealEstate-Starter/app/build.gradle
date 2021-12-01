@@ -68,10 +68,13 @@ dependencies {
     // Core with Ktx
     implementation "androidx.core:core-ktx:$version_core"
 
-    //Retrofit
+    //Retrofit for network layer and handling request
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
     implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
 
-    // moshi
+    // moshi for parsing json
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+
+    //glide library for image
+    implementation "com.github.bumptech.glide:glide:$version_glide"
 }
