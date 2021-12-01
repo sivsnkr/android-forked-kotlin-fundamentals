@@ -23,7 +23,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.marsrealestate.R
 import com.example.android.marsrealestate.databinding.FragmentOverviewBinding
-import com.example.android.marsrealestate.databinding.GridViewItemBinding
 import com.example.android.marsrealestate.network.MarsApiFilter
 
 /**
@@ -53,7 +52,9 @@ class OverviewFragment : Fragment() {
         binding.viewModel = viewModel
 
         // adding the adapter
-        binding.photosGrid.adapter = PhotoGridAdapter()
+        binding.photosGrid.adapter = PhotoGridAdapter(OnClickListener {
+            viewModel.displayPropertyDetails(it)
+        })
 
         setHasOptionsMenu(true)
         return binding.root
