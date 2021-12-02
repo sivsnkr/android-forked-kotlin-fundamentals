@@ -48,6 +48,7 @@ fun List<DatabaseVideo>.asDomainModel(): List<DevByteVideo> {
             title = it.title,
             description = it.description,
             updated = it.updated,
-            thumbnail = it.thumbnail)
+            thumbnail = it.thumbnail
+        )
     }
 }
