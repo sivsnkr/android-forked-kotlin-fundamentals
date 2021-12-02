@@ -9,6 +9,11 @@ import retrofit2.HttpException
 import timber.log.Timber
 
 class RefreshDataWorker(context : Context, params : WorkerParameters) : CoroutineWorker(context, params) {
+    companion object {
+        // unique name to identify this particular worker
+        const val WORK_NAME = "com.example.android.devbyteviewer.work.RefreshDataWorker"
+    }
+
     override suspend fun doWork(): Result {
         val database = getDatabase(applicationContext)
         val repository = VideosRepository(database)
