@@ -19,7 +19,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.example.android.gdgfinder.home.HomeViewModel"/>
     </data>
 
     <!-- coordinator layout let us stack element over each other -->
@@ -122,6 +124,10 @@
         </androidx.core.widget.NestedScrollView>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> viewModel.onFabClicked()}"
+            app:srcCompat="@drawable/ic_gdg"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
