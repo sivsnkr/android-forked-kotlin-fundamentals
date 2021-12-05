@@ -21,13 +21,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.android.gdgfinder.home.HomeViewModel"/>
+            type="com.example.android.gdgfinder.home.HomeViewModel" />
     </data>
 
     <!-- coordinator layout let us stack element over each other -->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <!-- use nestedScrollView for ScrollView to work properly if nested  inside some tag -->
         <androidx.core.widget.NestedScrollView
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/about_google_developer_groups"
-                    android:textAppearance="@style/TextAppearance.Title"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
                     app:layout_constraintEnd_toStartOf="@+id/end_guideline"
                     app:layout_constraintStart_toStartOf="@+id/start_guideline"
                     app:layout_constraintTop_toBottomOf="@id/image" />
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
                     android:text="@string/gdgs_are"
-                    android:textAppearance="@style/TextAppearance.Subtitle"
+                    android:textAppearance="@style/TextAppearance.CustomHeadline6"
                     app:layout_constraintEnd_toStartOf="@id/end_guideline"
                     app:layout_constraintStart_toEndOf="@id/start_guideline"
                     app:layout_constraintTop_toBottomOf="@+id/intro_text" />
@@ -122,12 +122,14 @@
                     app:layout_constraintGuide_end="26dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:onClick="@{() -> viewModel.onFabClicked()}"
-            app:srcCompat="@drawable/ic_gdg"/>
+            app:srcCompat="@drawable/ic_gdg"
+            tools:ignore="SpeakableTextPresentCheck" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
