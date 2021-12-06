@@ -35,6 +35,7 @@ import com.google.android.gms.location.*
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import com.example.android.gdgfinder.R
+import kotlinx.android.synthetic.main.add_gdg_fragment.*
 
 private const val LOCATION_PERMISSION_REQUEST = 1
 
@@ -75,6 +76,29 @@ class GdgListFragment : Fragment() {
                         Snackbar.LENGTH_LONG
                     ).show()
                 }
+            }
+        })
+
+        viewModel.regionList.observe(viewLifecycleOwner, object: Observer<List<String>> {
+            override fun onChanged(data: List<String>?) {
+                data ?: return
+                val chipGroup = binding.regionList
+                val inflator = LayoutInflater.from(chipGroup.context)
+                val children = data.map { regionName ->
+                    val chip = inflator.inflate(R.layout.region, chipGroup, false) as Chip
+                    chip.apply{
+                        text = regionName
+                        tag = regionName
+                    }
+                    chip.setOnCheckedChangeListener{button, isChecked ->
+                        viewModel.onFilterChanged(button.tag as String, isChecked)
+                    }
+                    chip
+                }
+
+                chipGroup.removeAllViews()
+                for(chip in children)
+                    chipGroup.addView(chip)
             }
         })
 
